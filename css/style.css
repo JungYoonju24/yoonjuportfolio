@@ -1,0 +1,266 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Display:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+
+/* reset */
+* {margin: 0;padding: 0; box-sizing: border-box;}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, tbody, tfoot, thead, tr, th, td{margin:0;padding:0;}
+h1, h2, h3, h4, h5, h6 {font-weight: 700; font-size: inherit;}
+a {color: inherit; text-decoration: inherit;}
+img {vertical-align: middle;}
+a img {border: none;}
+li {list-style: none;}
+address, em, i {font-style: normal;}
+a:focus {outline: none}
+button:focus {outline: none}
+html { scroll-behavior: auto; } /* 브라우저 기본 스무스 꺼야 Lenis랑 충돌 없음 */
+.wrap {overflow-x: clip; overflow-y: visible;}
+
+:root { --header-h: 90px; } /* 헤더 실제 높이에 맞춰 조절 */
+#about, #works, #process, #contact {
+  scroll-margin-top: var(--header-h);
+}
+
+
+/* 공통사항 */
+body {background-color: #F5F5F5; color: #101010; font-family: "Plus Jakarta Sans", sans-serif; letter-spacing: -2%;}
+.innerheader, .innervisual, .innerintro {width: 90%; margin: 0 auto; position: relative;}
+.inner {width: 90%; margin: 0 auto; position: relative;}
+/* .inner { border: solid 1px palevioletred;} */
+
+.en {font-family: "Pretendard Variable", sans-serif; letter-spacing: 0px;}
+.enn {font-family: "Noto Serif Display", serif; font-style: italic;}
+.white {color: #fff; font-weight: 500;}
+
+
+
+/* header */
+header {width: 100%; position: fixed; left: 0; top: 0; background-color: transparent; z-index: 100; transition: all 0.3s;}
+header.active {transform: translateY(-100%);}
+header .innerheader {display: flex; justify-content: space-between; font-size: 17px; font-weight: 400; margin-top: 30px;}
+header .logo {font-size: 21px; font-weight: 500;}
+header .menu {font-size: 16px;}
+header .innerheader .menu a {margin-right: 30px;}
+header .innerheader .menu a.d {margin-right: 0px;}
+
+
+.menu a .char {
+  display: inline-block;
+  position: relative;
+  color: transparent; /* 원래 텍스트 숨김 */
+  overflow: hidden;
+}
+
+.menu a .char::before,
+.menu a .char::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: attr(data-char);
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  transition-delay: calc(30ms * var(--char-index));
+  color: #101010; /* 색상 통일 */
+}
+
+/* 기본: after가 보이고, before는 아래에 대기 */
+.menu a .char::before {
+  transform: translateY(100%);
+  opacity: 0;
+}
+.menu a .char::after {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* hover 시: before 올라오고, after는 위로 사라짐 */
+.menu a:hover .char::before {
+  transform: translateY(0);
+  opacity: 1;
+}
+.menu a:hover .char::after {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+
+/* visual */
+.visual .inner {height: 100vh;}
+.visual .inner .title {font-size: 148px; font-weight: bold; text-align: center; top: 50%; left: 50%; transform: translate(-50%, -50%); position: absolute;} 
+.visual .inner h3 {font-size: 16px; font-weight: normal; text-align: center; top: 93%; left: 50%; transform: translate(-50%, -93%); position: absolute;}
+.visual .inner .imgslide {width: 50%;}
+.visual .inner .imgslide img {width: 50%;}
+
+/* intro */
+.intro .inner {height: 90vh; padding-top: 230px;}
+.intro .con {display: flex; justify-content: space-between;  gap: 120px; }
+.intro .title {font-size: 15px; height: 100%; width: 10%;}
+.intro .text {font-size: 65px; font-weight: 500; width: 80%; line-height: 1.2;}
+.intro .subtext {font-size: 17px; width: 80%; margin-top: 35px;  line-height: 1.6; margin-left: 260px;}
+.intro .enn {font-weight: 300;}
+
+
+/* about */
+.about .inner {height: 100%; padding: 100px 0; 
+  margin: 0 auto;  /* 가운데 정렬 */ width: 80%;}
+.about .inner .top {display: flex; justify-content: center; gap: 50px; margin-bottom: 90px; align-items: center;}
+.about .inner img {width: 32%;}
+.about .inner .con {margin-top: 200px; }
+.about .inner .con .title {font-size: 40px; font-weight: 500; padding-bottom: 25px;}
+.about .inner .con .text {font-size: 17px; line-height: 1.7; margin-bottom: 33px;}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px 100px;
+  margin: 0 auto;
+  width: 80%;
+}
+
+.about .inner .part .subtitle {font-size: 17px; font-weight: 500;}
+.about .inner .box {display: flex; font-size: 16px;
+align-items: flex-start; /* 세로 위쪽 기준으로 정렬 */
+gap: 15px;}
+.about .inner .box ul {padding: 0; margin: 0;}
+.about .inner .box li {line-height: 1.6; /* 두 ul의 li 높이를 동일하게 */}
+.about .inner .box .year li {margin-bottom: 9px; display: block;}
+.about .inner .box .text li {margin-bottom: 9px; display: block;}
+
+.about .inner .line
+{display: inline-block; width: 270px; height: 1.5px; background: #000; vertical-align: middle; margin: 8px 0}
+
+.about .inner  .toolbox {display: flex; gap: 5px;}
+.about .inner .toolbox img {width: 18%;}
+
+
+
+/* work */
+.works .inner {height: 100%; padding-top: 300px;}
+.works .inner .mainimg{
+  width:100%;
+  position:relative;
+  overflow:hidden;
+  border-radius:10px;
+  aspect-ratio:16/9; /* 너비:높이 비율 — 네 썸네일 비율로 맞춰줘 */
+}
+
+.works .work1, .works .work2 {margin-bottom: 200px;}
+
+.works .inner .mainimg img,
+.works .inner .mainimg video{
+  display:block;
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:0;
+  backface-visibility:hidden;
+  transform:translateZ(0);
+}
+
+/* .works .inner .mainimg img{filter:brightness(90%)} */
+.works .inner .mainimg video.preview{
+  opacity:0;
+  transition:opacity .3s ease;
+  pointer-events:none;
+  will-change:opacity;
+  transform:translateZ(0) scale(1.002); /* 1px 라인 숨김 */
+}
+.works .inner .hover-target:hover .mainimg video.preview{opacity:1}
+.works .inner .hover-target {display: block;}
+
+.works .inner .title .main {font-size: 80px; font-weight: 500; margin-bottom: 20px;}
+.works .inner .title .sub {font-size: 18px; margin-bottom: 33px;}
+
+
+
+.works .inner .bottom {font-size: 17px; margin-top: 100px;}
+.works .inner .bottom .workinner {margin: 0 auto;  width: 85%; }
+.works .inner .bottom .tit {font-weight: 600;}
+.works .inner .bottom .txt {line-height: 1.8;}
+
+
+.works .inner .bottom .con {
+  display: grid;
+  grid-template-columns: 200px 1fr;  /* 왼쪽 제목 / 오른쪽 내용 */
+  align-items: start;
+  column-gap: 80px;
+  margin-bottom: 50px;
+}
+
+.role-list {width: 100%; margin-top: 10px;}
+.role-list li {
+  list-style: none;
+  position: relative;
+  padding-left: 16px;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+.role-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 0.30em;   /* ← 텍스트 중간에 정확히 맞도록 보정 */
+  font-size: 18px;
+  line-height: 1;
+}
+
+a.link {font-size: 22px; font-weight: 500; display: inline-block; margin-top: 50px; border-bottom: 3px solid #000;  padding-bottom: 4px; /* 텍스트와 라인 간격 */ }
+
+.works .inner .subimg {margin-top: 130px;}
+.works .inner .subimg img {width: 100%; margin-bottom: 30px;}
+
+
+
+/* qna */
+.qna .inner {height: 100vh;}
+.qna .maintitle {font-size: 85px; font-weight: 500; position: absolute; top: 10%; left: 50%; transform: translate(-50%, -10%); } 
+
+
+.qna .inner .list {width: 75%;  position: absolute; left: 50%; transform: translateX(-50%); padding-top: 220px;}
+.qna .inner .list .item {margin-bottom: 20px; padding: 13px 0 17px 0;
+overflow: hidden;        /* 높이 애니메이션용 */
+max-height: 72px;        /* 처음엔 질문 줄 높이만 보이게 */
+transition: max-height 0.5s ease;
+border-bottom: 1px solid #D9D9D9;}
+
+.qna .inner .list .item .title {display: flex; justify-content: space-between; align-items: center; cursor: default; padding: 0 20px;}
+.qna .inner .list .item .title .question {font-size: 20px; font-weight: 500;}
+.qna .inner .list .item .answer {font-size: 17px; font-weight: 300; padding: 0 20px; line-height: 1.7; }
+.qna .inner .list .item:hover {
+max-height: 340px;  /* 펼쳐질 최대 높이(답변 길이에 맞게 조절) */}
+
+
+.qna .inner .list .item .icon { position: relative; width: 22px; height: 22px; }
+.qna .inner .list .item .icon .down,
+.qna .inner .list .item .icon .up {position: absolute; inset: 0; display: grid; place-items: center; opacity: 1; transition: opacity 1.2s ease, transform 1.2s ease;}
+.qna .inner .list .item .icon .up { opacity: 0; transform: rotate(-90deg); } /* 초기 숨김 */
+
+.qna .inner .list .item:hover .icon .down { opacity: 0; transform: rotate(90deg); }
+.qna .inner .list .item:hover .icon .up   { opacity: 1; transform: rotate(0deg); }
+
+/* 답변: opacity + 슬라이드 느낌 */
+.qna .inner .list .item .answer { padding-top: 0; }
+.qna .inner .list .item .answer p {margin: 12px 0 4px; opacity: 0; transform: translateY(-6px); transition: opacity 0.5s ease, transform 0.5s ease, padding 1.5s ease;}
+.qna .inner .list .item:hover .answer p {opacity: 1; transform: translateY(0);}
+
+
+
+/* video */
+.video .inner {width: 90%; height: 100%;}
+.video .inner .videowrap video {width: 100%; height: 90vh; border-radius: 15px; object-fit: cover; }
+.video .inner .videowrap .title {position: absolute; width: 100%; text-align: center; left: 0; top: 50%; transform: translateY(-50%);}
+.video .inner .videowrap .title h3 {font-size: 30px; font-weight: 400; color: #fff; opacity: 50%;}
+
+/* footer */
+.footer .inner {height: 80vh; padding-top: 70px;}
+.footer .inner .top {display: flex; justify-content: space-between;}
+
+.footer .inner .top .left {width: 30%;}
+.footer .inner .top .left .title {font-size: 40px; font-weight: 500;}
+
+.footer .inner .top .right {width: 50%; font-size: 16px; display: flex; justify-content: space-between; font-weight: 300;}
+.footer .inner .top .right .tit {margin-bottom: 18px; color: #808080;}
+.footer .inner .top .right li {margin-bottom: 13px; text-transform: uppercase; font-weight: 400;}
+
+.footer .inner .bottom {font-size: 275px; text-align: center; padding-top: 100px;}
