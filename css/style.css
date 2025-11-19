@@ -38,7 +38,7 @@ body {background-color: #F5F5F5; color: #101010; font-family: "Plus Jakarta Sans
 header {width: 100%; position: fixed; left: 0; top: 0; background-color: transparent; z-index: 100; transition: all 0.3s;}
 header.active {transform: translateY(-100%);}
 header .innerheader {display: flex; justify-content: space-between; font-size: 17px; font-weight: 400; margin-top: 30px;}
-header .logo {font-size: 21px; font-weight: 500;}
+header .logo {font-size: 16px; line-height: 1.4; font-weight: 300;}
 header .menu {font-size: 16px;}
 header .innerheader .menu a {margin-right: 30px;}
 header .innerheader .menu a.d {margin-right: 0px;}
@@ -86,24 +86,67 @@ header .innerheader .menu a.d {margin-right: 0px;}
 /* visual */
 .visual .inner {height: 100vh;}
 .visual .inner .title {font-size: 148px; font-weight: bold; text-align: center; top: 50%; left: 50%; transform: translate(-50%, -50%); position: absolute;} 
-.visual .inner h3 {font-size: 16px; font-weight: normal; text-align: center; top: 93%; left: 50%; transform: translate(-50%, -93%); position: absolute;}
+.visual .inner h3 {font-size: 15px; font-weight: normal; text-align: center; top: 93%; left: 50%; transform: translate(-50%, -93%); position: absolute;}
 .visual .inner .imgslide {width: 50%;}
 .visual .inner .imgslide img {width: 50%;}
+
+.visual {
+  position: relative;
+}
+.visual .inner {
+  height: 100vh;
+  position: relative;
+}
+
+/* 마우스를 따라다니는 이미지 박스 */
+.cursor-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 260px;      /* 이미지 크기 */
+  height: auto;
+  pointer-events: none; /* 클릭 막기 */
+  opacity: 0;           /* 기본 숨김 */
+  transform: translate(-50%, -50%);
+  transition: opacity 0.25s ease-out;
+  z-index: 50; /* 텍스트 위로! */
+}
+
+.cursor-img img {
+  width: 100%;
+  display: block;
+  border-radius: 12px; /* 느낌 맞춰서 조절 */
+  object-fit: cover;
+}
+
+/* 타이틀 스타일은 그대로 유지 가능 */
+.visual .inner .title {
+  font-size: 148px;
+  font-weight: bold;
+  text-align: center;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  cursor: none; /* yourwave 스타일 */
+}
+
+
+
 
 /* intro */
 .intro .inner {height: 90vh; padding-top: 230px;}
 .intro .con {display: flex; justify-content: space-between;  gap: 120px; }
-.intro .title {font-size: 15px; height: 100%; width: 10%;}
-.intro .text {font-size: 65px; font-weight: 500; width: 80%; line-height: 1.2;}
-.intro .subtext {font-size: 17px; width: 80%; margin-top: 35px;  line-height: 1.6; margin-left: 260px;}
+.intro .title {font-size: 15px; height: 100%; width: 10%; padding-top: 15px;}
+.intro .text {font-size: 68px; font-weight: 550; width: 85%; line-height: 1.2; }
+.intro .subtext {font-size: 17px; width: 80%; margin-top: 35px;  line-height: 1.7; margin-left: 260px; letter-spacing: 0%;}
 .intro .enn {font-weight: 300;}
 
 
 /* about */
-.about .inner {height: 100%; padding: 100px 0; 
+.about .inner {height: 100%; padding: 100px 0 300px 0; 
   margin: 0 auto;  /* 가운데 정렬 */ width: 80%;}
 .about .inner .top {display: flex; justify-content: center; gap: 50px; margin-bottom: 90px; align-items: center;}
-.about .inner img {width: 32%;}
+.about .inner img {width: 35%;}
 .about .inner .con {margin-top: 200px; }
 .about .inner .con .title {font-size: 40px; font-weight: 500; padding-bottom: 25px;}
 .about .inner .con .text {font-size: 17px; line-height: 1.7; margin-bottom: 33px;}
@@ -116,6 +159,7 @@ header .innerheader .menu a.d {margin-right: 0px;}
   width: 80%;
 }
 
+.about .inner .part {width: 110%;}
 .about .inner .part .subtitle {font-size: 17px; font-weight: 500;}
 .about .inner .box {display: flex; font-size: 16px;
 align-items: flex-start; /* 세로 위쪽 기준으로 정렬 */
@@ -132,9 +176,37 @@ gap: 15px;}
 .about .inner .toolbox img {width: 18%;}
 
 
+.con5 {position: relative; }
+.con5 .inner {height: 100vh;}
+.con5 .mainTextBox h2 {font-size: 70px; text-transform: uppercase; letter-spacing: -5px; font-weight: normal}
+.con5 .listBox {border-top: 1px solid #000; margin-top: 60px}
+.con5 .listBox li {display: grid; grid-template-columns: 2fr 1fr auto;border-bottom: 1px solid #000; padding: 10px 0; cursor: pointer}
+.con5 .listBox li h3 {font-size: 40px;letter-spacing: -1px; font-weight: normal;}
+.con5 .listBox li p {align-self: center}
+.con5 .imgBox {position: absolute; transform: scale(0); opacity: 0; z-index: 100;} /* 나중에 스크립트로 마우스 오버하면 나오게 해줄거라서 숨겨준다 */
+.wrap.on {overflow: hidden} /* 스크립트 2-9 번 작성 시 작성 */
+
+
+.con5 .imgBox {
+  position: fixed; /* 🔥 absolute 말고 fixed!! */
+  top: 0;
+  left: 0;
+  width: 320px; /* 필요하면 조절 */
+  pointer-events: none;
+  transform: scale(0);
+  opacity: 0;
+  z-index: 9999; /* 항상 위로 */
+}
+
+.con5 .imgBox img {
+  width: 100%;
+  display: block;
+}
+
+
 
 /* work */
-.works .inner {height: 100%; padding-top: 300px;}
+.works .inner {height: 100%;}
 .works .inner .mainimg{
   width:100%;
   position:relative;
@@ -169,7 +241,7 @@ gap: 15px;}
 .works .inner .hover-target:hover .mainimg video.preview{opacity:1}
 .works .inner .hover-target {display: block;}
 
-.works .inner .title .main {font-size: 80px; font-weight: 500; margin-bottom: 20px;}
+.works .inner .title .main {font-size: 100px; letter-spacing: -5px; font-weight: 500; margin-bottom: 23px;}
 .works .inner .title .sub {font-size: 18px; margin-bottom: 33px;}
 
 
@@ -257,10 +329,10 @@ max-height: 340px;  /* 펼쳐질 최대 높이(답변 길이에 맞게 조절) *
 .footer .inner .top {display: flex; justify-content: space-between;}
 
 .footer .inner .top .left {width: 30%;}
-.footer .inner .top .left .title {font-size: 40px; font-weight: 500;}
+.footer .inner .top .left .title {font-size: 40px; font-weight: 500; line-height: 1.1;}
 
 .footer .inner .top .right {width: 50%; font-size: 16px; display: flex; justify-content: space-between; font-weight: 300;}
 .footer .inner .top .right .tit {margin-bottom: 18px; color: #808080;}
-.footer .inner .top .right li {margin-bottom: 13px; text-transform: uppercase; font-weight: 400;}
+.footer .inner .top .right li {margin-bottom: 13px;  font-weight: 400;}
 
 .footer .inner .bottom {font-size: 275px; text-align: center; padding-top: 100px;}

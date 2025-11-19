@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+        <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TN03D9C3CS"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-TN03D9C3CS');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>yoonju — create meaningful experiences🪐</title>
@@ -8,20 +17,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/jquery.simplyscroll.min.js"></script>
-    <script src="js/scrolla.jquery.min.js"></script>
     <script src="js/slick.min.js"></script>
-    <script src="libs/scrolla.min.js"></script>
     <script src="js/splitting.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/@studio-freight/lenis/dist/lenis.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/AbsolutBalt/scrolla/dist/scrolla.jquery.bundle.min.js"></script>
     <script src="js/script.js" defer></script>
 </head>
 <body>
     <div class="wrap">
         <header>
             <div class="innerheader">
-                <a href="index.html" class="logo">YOONJU</a>
+                <a href="index.html" class="logo en">사용자 경험으로 브랜드 가치를 높이는 <br>
+                UX/UI 디자이너 정윤주</a>
                 <div class="menu">
                     <a href="#about" class="a" data-splitting>ABOUT</a>
                     <a href="#works" class="b" data-splitting>WORKS</a>
@@ -30,11 +39,19 @@
             </div>
         </header>
 
-        <section class="visual">
+        <section class="visual" id="home">
             <div class="inner">
                 <span class="title">YOONJUU</span>
                 <h3>A UI/UX DESIGNER <br>
                     WITH A USER-CENTERED MINDEST</h3>
+                    <!-- 마우스 따라다니는 이미지 -->
+                <div class="cursor-img">
+                    <img src="img/visual1.png" alt="">
+                    <img src="img/visual1.png" alt="">
+                    <img src="img/visual1.png" alt="">
+                    <img src="img/visual1.png" alt="">
+                    <img src="img/visual1.png" alt="">
+                </div>
             </div>
         </section>
 
@@ -42,10 +59,10 @@
             <div class="inner">
                 <div class="con">
                     <div class="title">
-                        ABOUT ME
+                        About me
                     </div>
                     <div class="text">
-                        Welcome! I design with <span class="enn">user focus,</span>
+                        Welcome! I design with <span class="enn">user focus,</span> <br>
     to create <span class="enn">meaningful experiences</span>
     beyond the interface.
                     </div>
@@ -150,6 +167,37 @@
             </div>
         </section>
 
+        <section class="con5">
+            <div class="inner">
+                <div class="mainTextBox"><h2>index</h2></div>
+                <ul class="listBox">
+                    <li>
+                        <h3>Project 1</h3>
+                        <p>Role</p>
+                        <p>2023</p>
+                    </li>
+                    <li>
+                        <h3>Project 2</h3>
+                        <p>Role</p>
+                        <p>2023</p>
+                    </li>
+                    <li>
+                        <h3>Project 3</h3>
+                        <p>Role</p>
+                        <p>2023</p>
+                    </li>
+                    <li>
+                        <h3>Project 4</h3>
+                        <p>Role</p>
+                        <p>2023</p>
+                    </li>
+                </ul>
+                <div class="imgBox box">
+                    <img src="img/img0.jpg" alt="">
+                </div>
+            </div>
+        </section>
+
         <section class="works" id="works">
             <div class="inner">
                 <div class="work1">
@@ -198,7 +246,7 @@
                 </div>
                 <div class="work2">
                     <div class="title">
-                        <div class="main">SM ENTERTAINMENT</div>
+                        <div class="main">SM entertainment</div>
                         <div class="sub en">반응형 웹 리디자인 팀 프로젝트</div>
                     </div>
                     <a href="https://ezenac.dothome.co.kr" target="_blank" class="hover-target">
@@ -242,7 +290,7 @@
                 </div>
                 <div class="work3">
                     <div class="title">
-                        <div class="main">ALBAMON</div>
+                        <div class="main">Albamon</div>
                         <div class="sub en">앱 리뉴얼 팀 프로젝트</div>
                     </div>
                     <a href="https://www.figma.com/design/O5QRxOwsVDDFtja23Xfs7p/%EC%A0%95%EC%9C%A4%EC%A3%BC_%EC%95%8C%EB%B0%94%EB%AA%AC-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8?node-id=2-3&t=qsfEeZgg6maYWTbG-1" target="_blank" class="hover-target">
@@ -378,13 +426,13 @@
                         <div class="con">
                             <div class="tit">Menu</div>
                             <ul class="list">
-                                <li><a href="#">Home</a></li>
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">Works</a></li>
+                                <li><a href="#home">HOME</a></li>
+                                <li><a href="#about">ABOUT</a></li>
+                                <li><a href="#works">WORKS</a></li>
                             </ul>
                         </div>
                         <div class="con">
-                            <div class="tit">Resume</div>
+                            <div class="tit">RESUME</div>
                             <ul class="list">
                                 <li><a href="img/resume.pdf" target="_blank">CV (pdf)</a></li>
                             </ul>

@@ -3,22 +3,36 @@ $(function(){
   Splitting(); 
 });
 
-// motion
-$(function(){
-  $('.animate').scrolla({
-    mobile:true,
-    once:true
-  })
-})
+// // motion
+// $(function(){
+//   $('.animate').scrolla({
+//     mobile:true,
+//     once:true
+//   })
+// });
 
-//스크립트 위로 튕기는것 방지
+// a href="#" 튕김 방지
 $(document).on('click', 'a[href="#"]', function(e){
   e.preventDefault();
 });
 
+// header 스크롤 방향 감지
+$(function(){
+  var prevScrollTop = 0;
+  document.addEventListener('scroll', function(){
+      var nowScrollTop = $(window).scrollTop();
+
+      if(nowScrollTop > prevScrollTop){
+          $('header').addClass('active');
+      }else {
+          $('header').removeClass('active');
+      }
+
+      prevScrollTop = nowScrollTop;
+  })
+});
 
 gsap.registerPlugin(ScrollTrigger);
-
 
 // work video
 document.querySelectorAll('.hover-target').forEach(container => {
@@ -27,14 +41,14 @@ document.querySelectorAll('.hover-target').forEach(container => {
 
   const play = () => {
     video.currentTime = 0;
-    video.play().catch(() => {}); // safari에서 play 오류 방지
+    video.play().catch(() => {});
   };
   const stop = () => {
     video.pause();
     video.currentTime = 0;
   };
 
-  container.setAttribute('tabindex', '0'); // 키보드 접근성
+  container.setAttribute('tabindex', '0');
   container.addEventListener('mouseenter', play);
   container.addEventListener('mouseleave', stop);
   container.addEventListener('focusin', play);
@@ -43,16 +57,7 @@ document.querySelectorAll('.hover-target').forEach(container => {
   container.addEventListener('touchend', stop, { passive: true });
 });
 
-
-// hover 대상 감지
-document.querySelectorAll('.hover-target').forEach(target => {
-  target.addEventListener('mouseenter', () => {
-    cursor.classList.add('active');
-  });
-  target.addEventListener('mouseleave', () => {
-    cursor.classList.remove('active');
-  });
-});
+// *** 여기 cursor 관련 블럭은 전부 삭제 / 주석!! ***
 
 
 // mainvideo  scrolltrigger
@@ -66,43 +71,37 @@ $(function(){
           markers: false
       }
   })
-  .fromTo('.videowrap video', {'clip-path': 'inset(60% round 30%'}, {'clip-path': 'inset(0% round 0%', ease: 'none', duration: 10} ,0) //비디오 점점 커지는 효과 ->clip path 사이트 참고 
-})
+  .fromTo('.videowrap video',
+    {'clip-path': 'inset(60% round 30%'},
+    {'clip-path': 'inset(0% round 0%', ease: 'none', duration: 10},
+    0
+  );
+});
 
 
-// ======================
-// Lenis 기본 스크롤
-// ======================
+// ====================== Lenis ======================
 const lenis = new Lenis({
-  duration: 1.1,  // 조금 더 부드럽고 길게
+  duration: 1.1,
   easing: (t) => 1 - Math.pow(1 - t, 3),
   smoothWheel: true,
   wheelMultiplier: 1.1,
   gestureDirection: 'vertical'
 });
-
-// window.lenis 등록 ★ 핵심 포인트
 window.lenis = lenis;
 
-// raf loop
 function raf(time) {
   lenis.raf(time);
   requestAnimationFrame(raf);
 }
 requestAnimationFrame(raf);
 
-// ScrollTrigger와 싱크
 lenis.on('scroll', () => {
   if (window.ScrollTrigger) ScrollTrigger.update();
 });
-
-// 모션 민감 사용자
 if (matchMedia('(prefers-reduced-motion: reduce)').matches) lenis.stop();
 
 
-// ======================
-// GNB 클릭 → 부드러운 앵커 이동
-// ======================
+// ====================== 앵커 스크롤 ======================
 (function(){
   const header = document.querySelector('header');
   const pad = 14;
@@ -110,10 +109,9 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) lenis.stop();
   const headerOffset = () =>
     (header ? header.getBoundingClientRect().height : 0) + pad;
 
-  // 자연스러운 easing (quint)
   const easeOutQuint = (t) => 1 - Math.pow(1 - t, 5);
 
-  document.querySelectorAll('header .menu a[href^="#"]').forEach((link) => {
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
     link.addEventListener('click', (e) => {
       const hash = link.getAttribute('href');
       const target = document.querySelector(hash);
@@ -121,12 +119,43 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) lenis.stop();
       if (!target) return;
       e.preventDefault();
 
-      // Lenis가 있으면 Lenis scrollTo 사용
-      window.lenis.scrollTo(target, {
-        offset: -headerOffset(),
-        duration: 1.6,   // 부드럽게 이동하는 시간
-        easing: easeOutQuint
-      });
+      if (window.lenis && typeof window.lenis.scrollTo === "function") {
+        window.lenis.scrollTo(target, {
+          offset: -headerOffset(),
+          duration: 1.6,
+          easing: easeOutQuint
+        });
+      } else {
+        const top = target.getBoundingClientRect().top + window.pageYOffset - headerOffset();
+        window.scrollTo({ top, behavior: "smooth" });
+      }
     });
   });
 })();
+
+
+// ====================== con5 리스트 hover 이미지 ======================
+window.addEventListener('DOMContentLoaded', () => {
+  const listBox = document.querySelectorAll(".con5 .listBox li");   
+  const imgBox  = document.querySelector(".con5 .imgBox");
+  const img     = document.querySelector(".con5 .imgBox img");
+
+  if (!listBox.length || !imgBox || !img) return;
+
+  listBox.forEach((item, i) => {
+    item.addEventListener("mouseenter", () => {
+      img.src = `img/img${i}.jpg`;
+      gsap.set(imgBox, { scale: 0, opacity: 0 });
+      gsap.to(imgBox, { scale: 1, opacity: 1, duration: 0.3 });
+    });
+
+    item.addEventListener("mousemove", (e) => {
+      imgBox.style.left = (e.pageX + 20) + 'px';
+      imgBox.style.top  = (e.pageY - 20) + 'px';
+    });
+
+    item.addEventListener("mouseleave", () => {
+      gsap.to(imgBox, { scale: 0, opacity: 0, duration: 0.3 });
+    });
+  });
+});
