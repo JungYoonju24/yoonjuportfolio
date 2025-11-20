@@ -136,7 +136,7 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) lenis.stop();
 
 
 // ===========================
-// Visual 섹션 마우스 트레일 효과
+// Visual 섹션 마우스 트레일 효과 (즉시 반응 + 지연 없음)
 // ===========================
 
 let visualIndex = 0;
@@ -154,23 +154,32 @@ const visualImgList = [
 ];
 
 const visualWrapper = document.querySelector('.visual .floating-images');
-const visualSection = document.querySelector('.visual');
 
+// =====================================
+// 🔥 이미지 미리 로딩 → 첫 마우스 움직임부터 바로 출력됨
+// =====================================
+visualImgList.forEach(src => {
+  const preload = new Image();
+  preload.src = src;
+});
+
+// =====================================
+// 설정값
+// =====================================
 let lastVisualTime = 0;
 const visualDelay = 200; // 0.2초 간격
 
+// =====================================
+// 마우스 트레일 생성
+// =====================================
 document.addEventListener('mousemove', (e) => {
   const now = Date.now();
   if (now - lastVisualTime < visualDelay) return;
   lastVisualTime = now;
 
-  // visual 화면 안에서만 실행
-  const rect = visualSection.getBoundingClientRect();
-  const inViewport =
-    e.clientY >= rect.top &&
-    e.clientY <= rect.bottom;
-
-  if (!inViewport) return;
+  // 🔥 뷰포트 체크 제거 (즉시 반응)
+  // const rect = visualSection.getBoundingClientRect();
+  // if(!inViewport) return;   // ← 이것들 제거
 
   const img = document.createElement('img');
   img.src = visualImgList[visualIndex % visualImgList.length];
@@ -182,9 +191,10 @@ document.addEventListener('mousemove', (e) => {
   visualWrapper.appendChild(img);
   visualIndex++;
 
+  // 사라지는 시간
   setTimeout(() => {
     img.remove();
-  }, 900); 
+  }, 900);
 });
 
 
