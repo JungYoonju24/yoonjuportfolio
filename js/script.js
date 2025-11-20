@@ -136,7 +136,7 @@ if (matchMedia('(prefers-reduced-motion: reduce)').matches) lenis.stop();
 
 
 // ===========================
-// Visual 섹션 마우스 트레일 효과 (즉시 반응 + 지연 없음)
+// Visual 섹션 마우스 트레일 효과
 // ===========================
 
 let visualIndex = 0;
@@ -153,48 +153,43 @@ const visualImgList = [
   'img/visual10.png'
 ];
 
+const visualSection = document.querySelector('.visual');
 const visualWrapper = document.querySelector('.visual .floating-images');
 
-// =====================================
-// 🔥 이미지 미리 로딩 → 첫 마우스 움직임부터 바로 출력됨
-// =====================================
+// 🔥 이미지 미리 로딩 (즉시 반응 위해 필수)
 visualImgList.forEach(src => {
   const preload = new Image();
   preload.src = src;
 });
 
-// =====================================
-// 설정값
-// =====================================
 let lastVisualTime = 0;
-const visualDelay = 200; // 0.2초 간격
+const visualDelay = 200;
 
-// =====================================
-// 마우스 트레일 생성
-// =====================================
-document.addEventListener('mousemove', (e) => {
+// ===============================
+// 🔥 핵심!! visual 섹션에서만 작동
+// ===============================
+visualSection.addEventListener('mousemove', (e) => {
+
   const now = Date.now();
   if (now - lastVisualTime < visualDelay) return;
   lastVisualTime = now;
 
-  // 🔥 뷰포트 체크 제거 (즉시 반응)
-  // const rect = visualSection.getBoundingClientRect();
-  // if(!inViewport) return;   // ← 이것들 제거
+  const rect = visualSection.getBoundingClientRect();
+  const offsetX = e.clientX;
+  const offsetY = e.clientY - rect.top;
 
+  // 이미지 생성
   const img = document.createElement('img');
   img.src = visualImgList[visualIndex % visualImgList.length];
   img.classList.add('trail-img');
 
-  img.style.left = `${e.clientX}px`;
-  img.style.top = `${e.clientY}px`;
+  img.style.left = `${offsetX}px`;
+  img.style.top = `${offsetY}px`;
 
   visualWrapper.appendChild(img);
   visualIndex++;
 
-  // 사라지는 시간
-  setTimeout(() => {
-    img.remove();
-  }, 900);
+  setTimeout(() => img.remove(), 900);
 });
 
 
