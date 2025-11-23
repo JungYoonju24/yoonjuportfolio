@@ -3,13 +3,7 @@ $(function(){
   Splitting(); 
 });
 
-// motion
-$(function(){
-  $('.animate').scrolla({
-    mobile:true,
-    once:true
-  })
-});
+
 
 // a href="#" 튕김 방지
 $(document).on('click', 'a[href="#"]', function(e){
@@ -242,4 +236,149 @@ document.addEventListener("DOMContentLoaded", function () {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   });
+});
+
+
+
+// 커서 멘트 등장
+const cursorText = document.querySelector('.cursor-text');
+const hoverTargets = document.querySelectorAll('.hover-target');
+
+// 마우스 움직임 따라 위치 이동
+document.addEventListener('mousemove', (e) => {
+  cursorText.style.top = `${e.clientY - 15}px`;   // 커서 위쪽으로 이동
+  cursorText.style.left = `${e.clientX + 15}px`;  // 살짝 오른쪽
+});
+
+// hover 들어왔을 때
+hoverTargets.forEach(target => {
+  target.addEventListener('mouseenter', () => {
+    cursorText.style.opacity = 1;
+  });
+  target.addEventListener('mouseleave', () => {
+    cursorText.style.opacity = 0;
+  });
+});
+
+
+
+// visual 타이틀 등장
+gsap.registerPlugin(ScrollTrigger);
+
+gsap.to(".visual .title i", {
+  scrollTrigger: {
+    trigger: ".visual",
+    start: "top 80%",   // 화면 들어오면 시작
+    toggleActions: "play none none reverse"
+  },
+  translateY: 0,
+  duration: 1,
+  ease: "power3.out"
+});
+
+
+
+
+// 등장 애니메이션
+gsap.to(".intro .con", {
+  opacity: 1,
+  y: 0,
+  duration: 0.6,
+  ease: "power3.out",
+  scrollTrigger: {
+    trigger: ".intro .con",
+    start: "top 80%"
+  }
+});
+
+gsap.to(".intro .con .subtext", {
+  opacity: 1,
+  y: 0,
+  duration: 0.6,
+  ease: "power3.out",
+  delay: 0.2,
+  scrollTrigger: {
+    trigger: ".intro .con",
+    start: "top 80%"
+  }
+});
+
+gsap.to(".about .top", {
+  opacity: 1,
+  y: 0,
+  duration: 0.6,
+  ease: "power3.out",
+  scrollTrigger: {
+    trigger: ".about .top",
+    start: "top 80%"
+  }
+});
+
+gsap.to(".about .about-grid", {
+  opacity: 1,
+  y: 0,
+  duration: 0.6,
+  ease: "power3.out",
+  delay: 0.15,
+  scrollTrigger: {
+    trigger: ".about .about-grid",
+    start: "top 80%"
+  }
+});
+
+gsap.to(".index", {
+  opacity: 1,
+  y: 0,
+  duration: 0.6,
+  ease: "power3.out",
+  scrollTrigger: {
+    trigger: ".index",
+    start: "top 80%"
+  }
+});
+
+gsap.to(".works .work1", {
+  opacity: 1,
+  y: 0,
+  duration: 0.6,
+  ease: "power3.out",
+  scrollTrigger: {
+    trigger: ".works",
+    start: "top 80%"
+  }
+});
+
+gsap.to(".works .work2", {
+  opacity: 1,
+  y: 0,
+  duration: 0.6,
+  ease: "power3.out",
+  delay: 0.15,
+  scrollTrigger: {
+    trigger: ".works .work2",
+    start: "top 80%"
+  }
+});
+
+gsap.to(".works .work3", {
+  opacity: 1,
+  y: 0,
+  duration: 0.6,
+  ease: "power3.out",
+  delay: 0.15,
+  scrollTrigger: {
+    trigger: ".works .work3",
+    start: "top 80%"
+  }
+});
+
+gsap.to(".qna", {
+  opacity: 1,
+  y: 0,
+  duration: 0.6,
+  ease: "power3.out",
+  scrollTrigger: {
+    trigger: ".qna",
+    start: "top 80%"
+  }
 });
