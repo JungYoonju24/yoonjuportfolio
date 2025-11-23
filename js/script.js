@@ -225,6 +225,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   io.observe(footer);
 
+  
+
   // ✅ Top 버튼 클릭 시 부드러운 스크롤 (Lenis 우선 적용)
   btn.addEventListener('click', () => {
     if (window.lenis && typeof window.lenis.scrollTo === 'function') {

@@ -158,7 +158,7 @@ header .innerheader .menu a.d {margin-right: 0px;}
 
 /* intro */
 .intro .inner {height: 90vh; padding-top: 230px;}
-.intro .con {display: flex; justify-content: space-between;  gap: 120px; }
+.intro .con {display: flex; gap: 50px; }
 .intro .title {font-size: 15px; height: 100%; width: 10%; padding-top: 15px;}
 .intro .text {font-size: 68px; font-weight: 550; line-height: 1.2;}
 .intro .subtext {font-size: 17px;  margin-top: 35px;  line-height: 1.7;  letter-spacing: 0%; color: #808080;}
@@ -174,12 +174,11 @@ header .innerheader .menu a.d {margin-right: 0px;}
 
 /* about */
 .about .inner {height: 100%; padding: 100px 0 300px 0; margin: 0 auto; }
-.about .inner .top {display: flex; justify-content: center; gap: 70px; margin-bottom: 90px; align-items: center;}
-.about .inner img {width: 35%; filter: brightness(95%);}
+.about .inner .top {display: flex; justify-content: center; margin-bottom: 90px; align-items: center; width: 80%; margin: 0 auto; margin-bottom: 100px; gap: 30px;}
+.about .inner img {width: 45%; filter: brightness(95%);}
 .about .inner .con {margin-top: 260px;}
 .about .inner .con .title {font-size: 43px; font-weight: 500; padding-bottom: 22px;}
 .about .inner .con .text {font-size: 18px; line-height: 1.8; margin-bottom: 35px; color: #808080;}
-
 
 .about-grid {
   display: grid;
@@ -189,7 +188,7 @@ header .innerheader .menu a.d {margin-right: 0px;}
   width: 80%;
 }
 
-.about .inner .part {width: 110%;}
+.about .inner .part {width: 100%;}
 .about .inner .part .subtitle {font-size: 18px; font-weight: 600;}
 .about .inner .box {display: flex; font-size: 17px;
 align-items: flex-start; /* 세로 위쪽 기준으로 정렬 */
@@ -204,7 +203,7 @@ gap: 15px;}
 {display: inline-block; width: 270px; height: 1.5px; background: #000; vertical-align: middle; margin: 8px 0}
 
 .about .inner  .toolbox {display: flex; gap: 5px;}
-.about .inner .toolbox img {width: 15%;}
+.about .inner .toolbox img {width: 12%;}
 
 
 /* 등장 애니메이션 */
@@ -406,8 +405,8 @@ max-height: 340px;  /* 펼쳐질 최대 높이(답변 길이에 맞게 조절) *
 /* top */
 .to-top {
   position: fixed;
-  right: clamp(55px, 6vw, 75px);
-  bottom: calc(300px + env(safe-area-inset-bottom));
+  right: 80px;
+  bottom: 300px;
   width: 50px; height: 50px; border-radius: 50%;
   background: #101010;
   backdrop-filter: blur(6px);
