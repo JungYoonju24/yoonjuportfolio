@@ -174,8 +174,8 @@ header .innerheader .menu a.d {margin-right: 0px;}
 
 /* about */
 .about .inner {height: 100%; padding: 100px 0 300px 0; margin: 0 auto; }
-.about .inner .top {display: flex; justify-content: center; margin-bottom: 90px; align-items: center; width: 80%; margin: 0 auto; margin-bottom: 100px; gap: 30px;}
-.about .inner img {width: 45%; filter: brightness(95%);}
+.about .inner .top {display: flex; justify-content: center; margin-bottom: 90px; align-items: center; width: 80%; margin: 0 auto; margin-bottom: 100px; gap: 30px; background-color: rebeccapurple;}
+.about .inner img {width: 475px; filter: brightness(95%);}
 .about .inner .con {margin-top: 260px;}
 .about .inner .con .title {font-size: 43px; font-weight: 500; padding-bottom: 22px;}
 .about .inner .con .text {font-size: 18px; line-height: 1.8; margin-bottom: 35px; color: #808080;}
@@ -186,6 +186,7 @@ header .innerheader .menu a.d {margin-right: 0px;}
   gap: 50px 100px;
   margin: 0 auto;
   width: 80%;
+  background-color: yellow;
 }
 
 .about .inner .part {width: 100%;}
