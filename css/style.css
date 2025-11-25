@@ -161,7 +161,7 @@ header .innerheader .menu a.d {margin-right: 0px;}
 .intro .con {display: flex; gap: 50px; }
 .intro .title {font-size: 15px; height: 100%; width: 10%; padding-top: 15px;}
 .intro .text {font-size: 68px; font-weight: 550; line-height: 1.2;}
-.intro .subtext {font-size: 17px;  margin-top: 35px;  line-height: 1.7;  letter-spacing: 0%; color: #808080;}
+.intro .subtext {font-size: 20px;  margin-top: 35px;  line-height: 1.7;  letter-spacing: 0%; color: #808080;}
 .intro .subtext span {color: #101010; font-weight: 500;}
 .intro .enn {font-weight: 300;}
 
@@ -174,25 +174,18 @@ header .innerheader .menu a.d {margin-right: 0px;}
 
 /* about */
 .about .inner {height: 100%; padding: 100px 0 300px 0; margin: 0 auto; }
-.about .inner .top {display: flex; width: 80%; margin: 0 auto; margin-bottom: 100px; gap: 30px; }
+.about .inner .top {display: flex; width: 80%; margin: 0 auto; margin-bottom: 100px; gap: 50px;}
 .about .inner img {width: 470px; filter: brightness(95%);}
-.about .inner .con {margin-top: 290px;}
-.about .inner .con .title {font-size: 43px; font-weight: 500; padding-bottom: 22px;}
-.about .inner .con .text {font-size: 18px; line-height: 1.8; margin-bottom: 35px; color: #808080;}
+.about .inner .con {margin-top: 370px;}
+.about .inner .con .title {font-size: 45px; font-weight: 500; padding-bottom: 22px;}
+.about .inner .con .text {font-size: 19px; line-height: 1.8;  color: #808080; }
 
-.about-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 50px 100px;
-  margin: 0 auto;
-  width: 80%;
-}
+.about-grid {display: grid; grid-template-columns: repeat(3, 1fr);gap: 50px 100px; margin: 0 auto; width: 80%;}
 
 .about .inner .part {width: 100%;}
 .about .inner .part .subtitle {font-size: 18px; font-weight: 600;}
 .about .inner .box {display: flex; font-size: 17px;
-align-items: flex-start; /* 세로 위쪽 기준으로 정렬 */
-gap: 15px;}
+align-items: flex-start; /* 세로 위쪽 기준으로 정렬 */ gap: 15px;}
 .about .inner .box ul {padding: 0; margin: 0;}
 .about .inner .box li {line-height: 1.6; /* 두 ul의 li 높이를 동일하게 */}
 .about .inner .box .year li {margin-bottom: 9px; display: block; color: #808080;}
@@ -204,7 +197,6 @@ gap: 15px;}
 
 .about .inner  .toolbox {display: flex; gap: 5px;}
 .about .inner .toolbox img {width: 12%;}
-
 
 /* 등장 애니메이션 */
 .about .top,
