@@ -178,7 +178,7 @@ header .innerheader .menu a.d {margin-right: 0px;}
 .about .inner img {width: 470px; filter: brightness(95%);}
 .about .inner .con {margin-top: 370px;}
 .about .inner .con .title {font-size: 45px; font-weight: 500; padding-bottom: 32px;}
-.about .inner .con .text {font-size: 19px; line-height: 1.8;  color: #808080; }
+.about .inner .con .text {font-size: 19px; line-height: 2.0;  color: #808080; }
 
 .about-grid {display: grid; grid-template-columns: repeat(3, 1fr);gap: 50px 100px; margin: 0 auto; width: 80%;}
 
